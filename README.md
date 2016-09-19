@@ -4,6 +4,8 @@ Laravel-billplz is a simple service providers and generator to connect your lara
 
 [![StyleCI](https://styleci.io/repos/68587947/shield?branch=master)](https://styleci.io/repos/68587947)
 
+Before you getting started, kindly visit https://www.billplz.com/enterprise/signup to register an acount and read https://www.billplz.com/api#v3 for better understanding.
+
 ### Install
 
 Require this package with composer using the following command:
