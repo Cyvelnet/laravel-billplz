@@ -183,7 +183,6 @@ class BillplzPayment implements BillplzPaymentInterface
             $message->reference2($reference2['reference']);
         }
 
-        dd($message->getBillplzMessage()->toArray());
         return $message;
     }
 
