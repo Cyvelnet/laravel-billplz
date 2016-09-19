@@ -8,30 +8,6 @@ namespace Cyvelnet\LaravelBillplz\Messages;
 class BillMessage
 {
     /**
-     * billplz take 1 cent as an unit
-     * which mean RM 1 = 100.
-     */
-
-
-    /*collection_id 	The collection ID. A string.
-    email 	The email address of the bill’s recipient. (Email is required if mobile is not present.)
-    mobile 	Recipient’s mobile number. Format is +601XXXXXXXX OR 601XXXXXXXX (Mobile is required if email is not present).
-    name 	Bill’s recipient name. Useful for identification on recipient part.
-    amount 	A positive integer in the smallest currency unit (e.g 100 cents to charge RM 1.00)
-    callback_url 	Web hook URL to be called after payment’s transaction completed. It will POST a Bill object.
-    description 	The bill's description. Will be displayed on bill template. String format. (Max of 200 characters)
-    Optional Arguments
-    Parameter 	Description
-    due_at 	Due date for the bill. The format YYYY-MM-DD, default value is today.
-    redirect_url 	URL to redirect the customer after payment completed. It will do a GET to redirect_url together with bill’s status and ID.
-    deliver 	Boolean value to set email and SMS (if mobile is present) delivery. Default value is false.
-    reference_1_label 	Label #1 to reconcile payments (Max of 120 characters)
-    Default value is Reference 1
-    reference_1 	Value for reference_1_label (Max of 20 characters)
-    reference_2_label 	Label #2 to reconcile payments (Max of 120 characters)
-    Default value is Reference 2
-    reference_2 	Value for reference_2_label (Max of 20 characters)*/
-    /**
      * @var
      */
     protected $message;
@@ -218,6 +194,8 @@ class BillMessage
      * @param $name
      * @param $email
      * @param null $mobile
+     *
+     * @return $this
      */
     public function to($name, $email, $mobile = null)
     {
@@ -228,6 +206,8 @@ class BillMessage
             $this->message->setMobile($mobile);
             $this->message->setDeliver(true);
         }
+
+        return $this;
     }
 
     /**
