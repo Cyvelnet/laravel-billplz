@@ -50,8 +50,6 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
 
             $http = $this->createHttpClient();
 
-            dd($logo, $photo);
-
             $billplzPayment = new BillplzPayment(new RequestTransport($http, $apiKey, $enableSandbox));
 
             $billplzPayment->defaultBills($collectionId, $callbackUrl, $references);
