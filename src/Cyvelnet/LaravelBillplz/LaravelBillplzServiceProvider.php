@@ -2,6 +2,7 @@
 
 namespace Cyvelnet\LaravelBillplz;
 
+use Cyvelnet\LaravelBillplz\Consoles\BillGenerationConsole;
 use Cyvelnet\LaravelBillplz\Transports\RequestTransport;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -22,8 +23,9 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $source_config = __DIR__.'/../../config/billplz.php';
+        $source_config = __DIR__ . '/../../config/billplz.php';
         $this->publishes([$source_config => 'config/billplz.php'], 'config');
+        $this->loadViewsFrom(__DIR__.'/../../views', 'billplz');
     }
 
     /**
@@ -41,24 +43,26 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
             $apiKey = $this->getApiKey($key);
             $collectionId = $this->getCollectionId($key);
             $callbackUrl = $this->app['config']->get('billplz.callback_url');
-            $callbackUrl = $this->app['config']->get('billplz.callback_url');
+            $references = $this->app['config']->get('billplz.references');
+
+            $logo = $this->app['config']->get('billplz.logo');
+            $photo = $this->app['config']->get('billplz.photo');
 
             $http = $this->createHttpClient();
 
+            dd($logo, $photo);
+
             $billplzPayment = new BillplzPayment(new RequestTransport($http, $apiKey, $enableSandbox));
 
-            $billplzPayment->defaultCollection($collectionId);
-            //$billplzPayment->defaultCallbackUrl('url');
-            //$billplzPayment->defaultCollection('asd');
-            // $billplzPayment->defaultCollection('asd');
+            $billplzPayment->defaultBills($collectionId, $callbackUrl, $references);
+            $billplzPayment->defaultCollections($logo, $photo);
+
 
             return $billplzPayment;
         });
 
-        //\Billplz2::issue(new MonthlySubscription())
-        //->to('terry low')
-        //->byEmail('ginlong_low@gmail.com');
-        //->bySms('ginlong_low@gmail.com');
+        $this->commands(BillGenerationConsole::class);
+
     }
 
     private function getConfigKey($sandbox)
@@ -87,8 +91,7 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
             return new Client([
                 'exceptions' => false,
                 'headers'    => [
-                    'Accept'       => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Accept' => 'application/json',
                 ],
                 //'debug'      => true,
             ]);

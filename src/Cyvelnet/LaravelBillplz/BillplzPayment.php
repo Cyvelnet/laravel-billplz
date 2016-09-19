@@ -3,6 +3,7 @@
 namespace Cyvelnet\LaravelBillplz;
 
 use Closure;
+use Cyvelnet\LaravelBillplz\Channels\BillChannel;
 use Cyvelnet\LaravelBillplz\Contracts\BillplzPaymentInterface;
 use Cyvelnet\LaravelBillplz\Contracts\TransportInterface;
 use Cyvelnet\LaravelBillplz\Messages\BillMessage;
@@ -38,6 +39,11 @@ class BillplzPayment implements BillplzPaymentInterface
     protected $callbackUrl;
 
     /**
+     * @var array
+     */
+    protected $references = [];
+
+    /**
      * BillplzPayment constructor.
      *
      * @param \Cyvelnet\LaravelBillplz\Contracts\TransportInterface $transport
@@ -66,7 +72,7 @@ class BillplzPayment implements BillplzPaymentInterface
      *
      * @param \Cyvelnet\LaravelBillplz\BillplzPaymentBill|\Closure $bill
      *
-     * @return \Cyvelnet\LaravelBillplz\BillChannel
+     * @return \Cyvelnet\LaravelBillplz\Channels\BillChannel
      */
     public function send(BillplzPaymentBill $bill)
     {
@@ -102,7 +108,7 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create a collection.
      *
-     * @param string   $title
+     * @param string $title
      * @param \Closure $callback
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -123,8 +129,8 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create an open collection.
      *
-     * @param string       $title
-     * @param string       $description
+     * @param string $title
+     * @param string $description
      * @param int|\Closure $amount
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -164,9 +170,9 @@ class BillplzPayment implements BillplzPaymentInterface
 
     /**
      * @param \Cyvelnet\LaravelBillplz\BillplzPaymentBill|\Closure $bill
-     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage        $message
+     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage $message
      *
-     * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|\Cyvelnet\LaravelBillplz\BillChannel
+     * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|\Cyvelnet\LaravelBillplz\Channels\BillChannel
      */
     private function buildMessage($bill, $message)
     {
@@ -190,19 +196,17 @@ class BillplzPayment implements BillplzPaymentInterface
     }
 
     /**
+     * set default bill properties
+     *
      * @param $collectionId
+     * @param $callbackUrl
+     * @param array $references
      */
-    public function defaultCollection($collectionId)
+    public function defaultBills($collectionId, $callbackUrl, $references = [])
     {
         $this->collectionId = $collectionId;
-    }
-
-    /**
-     * @param $callbackUrl
-     */
-    public function defaultCallbackUrl($callbackUrl)
-    {
         $this->callbackUrl = $callbackUrl;
+        $this->references = $references;
     }
 
     /**
@@ -211,15 +215,6 @@ class BillplzPayment implements BillplzPaymentInterface
     private function createCollectionMessage()
     {
         return new CollectionMessage(new BillplzCollectionMessage());
-        /*
-                if ($this->collectionId) {
-                    $message->collectionId($this->collectionId);
-                }
-                if ($this->callbackUrl) {
-                    $message->callbackUrl($this->callbackUrl);
-                }*/
-
-        return $message;
     }
 
     /**
@@ -228,14 +223,6 @@ class BillplzPayment implements BillplzPaymentInterface
     private function createOpenCollectionMessage()
     {
         return new OpenCollectionMessage(new BillplzOpenCollectionMessage());
-        /*
-                if ($this->collectionId) {
-                    $message->collectionId($this->collectionId);
-                }
-                if ($this->callbackUrl) {
-                    $message->callbackUrl($this->callbackUrl);
-                }*/
 
-        return $message;
     }
 }

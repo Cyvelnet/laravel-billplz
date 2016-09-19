@@ -1,6 +1,6 @@
 <?php
 
-namespace Cyvelnet\LaravelBillplz;
+namespace Cyvelnet\LaravelBillplz\Channels;
 
 use Cyvelnet\LaravelBillplz\Contracts\TransportInterface;
 use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;

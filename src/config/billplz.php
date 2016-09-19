@@ -81,5 +81,21 @@ return [
     */
     'photo'      => '', // storage_path('/billplz/my-photo.jpg')
 
+    /*
+    |--------------------------------------------------------------------------
+    | Bill generation location
+    |--------------------------------------------------------------------------
+    |
+    | The default bill store location relative to App/
+    */
+    'directory'  => 'Bills\\',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Bill generation namespace
+    |--------------------------------------------------------------------------
+    |
+    | The default bill store namespace
+    */
+    'namespace'  => 'App/Bills',
 ];

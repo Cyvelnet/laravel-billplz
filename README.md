@@ -34,9 +34,9 @@ Cyvelnet\LaravelBillplz\Facades\Billplz::class
 \Billplz::issue(function (Cyvelnet\LaravelBillplz\Messages\BillMessage $bill)
     {
         // bill with a amount RM50
-        $bill->amount(50) // will multiply with 100 automatically, so a RM500 bill, you just pass 500 instead of 50000
-             ->callbackUrl('http://foorbar.com/foo/bar/webhook/')
-             ->to('name', 'email', 'mobile');
+        $bill->to('name', 'email', 'mobile')
+             ->amount(50) // will multiply with 100 automatically, so a RM500 bill, you just pass 500 instead of 50000
+             ->callbackUrl('http://foorbar.com/foo/bar/webhook/');
     });
 ```
 An UnacceptableRequestException will be throw for any call with any missing parameter.
@@ -117,7 +117,7 @@ to customize your collection more, pass in an anonymous function as the second p
     $request = \Billplz::openCollection('collection title', 'collection description', function (\Cyvelnet\LaravelBillplz\Messages\OpenCollectionMessage $collection) {
     
         $collection->anyAmountAndQty();
-        //         ->splitPaymentByFixed('foor@bar.com', 50); 
+        //         ->splitPaymentByVariable('foo@bar.com', 50);  // split payment by 50%
         //         ->tax(6)   // 6% tax
         //         ->photo(storage_path('/billplz/my-photo.jpg'))
         //         ->reference1('your references')
