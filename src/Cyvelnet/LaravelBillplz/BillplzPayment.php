@@ -116,7 +116,7 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create a collection.
      *
-     * @param string $title
+     * @param string   $title
      * @param \Closure $callback
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -137,8 +137,8 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create an open collection.
      *
-     * @param string $title
-     * @param string $description
+     * @param string       $title
+     * @param string       $description
      * @param int|\Closure $amount
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -186,7 +186,6 @@ class BillplzPayment implements BillplzPaymentInterface
         return $message;
     }
 
-
     /**
      * @return \Cyvelnet\LaravelBillplz\Messages\CollectionMessage
      */
@@ -199,7 +198,6 @@ class BillplzPayment implements BillplzPaymentInterface
         }
 
         return $message;
-
     }
 
     /**
@@ -219,7 +217,7 @@ class BillplzPayment implements BillplzPaymentInterface
 
     /**
      * @param \Cyvelnet\LaravelBillplz\BillplzPaymentBill|\Closure $bill
-     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage $message
+     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage        $message
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|\Cyvelnet\LaravelBillplz\Channels\BillChannel
      */
