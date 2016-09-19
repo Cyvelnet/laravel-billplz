@@ -23,7 +23,7 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $source_config = __DIR__ . '/../../config/billplz.php';
+        $source_config = __DIR__.'/../../config/billplz.php';
         $this->publishes([$source_config => 'config/billplz.php'], 'config');
         $this->loadViewsFrom(__DIR__.'/../../views', 'billplz');
     }
@@ -62,7 +62,6 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
         });
 
         $this->commands(BillGenerationConsole::class);
-
     }
 
     private function getConfigKey($sandbox)
