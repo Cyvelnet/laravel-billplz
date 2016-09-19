@@ -17,7 +17,7 @@ After updating and installed, add the service provider to the  `providers` array
 ```php
 Cyvelnet\LaravelBillplz\LaravelBillplzServiceProvider::class
 ```
-And finally add the facade to the `facades` array section in `config/app.php`
+And finally add the facade to the `aliases` array section in `config/app.php`
 
 ```php
 Cyvelnet\LaravelBillplz\Facades\Billplz::class
