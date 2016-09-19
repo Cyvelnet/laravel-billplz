@@ -1,7 +1,7 @@
 {
-    "name": "cyvelnet/laravel5-fractal",
-    "description": "A simple fractal service provider and transformer generator with model attributes for laravel 5.",
-    "keywords": ["laravel5","fractal","Api transformer"],
+    "name": "cyvelnet/laravel-billplz",
+    "description": "Flexible billing and payment solution from Billplz for laravel ",
+    "keywords": ["laravel","billplz"],
     "license": "MIT",
     "authors": [
         {
