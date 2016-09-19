@@ -42,7 +42,8 @@ Cyvelnet\LaravelBillplz\Facades\Billplz::class
         // bill with a amount RM50
         $bill->to('name', 'email', 'mobile')
              ->amount(50) // will multiply with 100 automatically, so a RM500 bill, you just pass 500 instead of 50000
-             ->callbackUrl('http://foorbar.com/foo/bar/webhook/');
+             ->callbackUrl('http://foorbar.com/foo/bar/webhook/')
+             ->description('description');
     });
 ```
 An UnacceptableRequestException will be throw for any call with any missing parameter.
