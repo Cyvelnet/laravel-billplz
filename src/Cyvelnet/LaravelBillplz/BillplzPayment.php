@@ -42,6 +42,14 @@ class BillplzPayment implements BillplzPaymentInterface
      * @var array
      */
     protected $references = [];
+    /**
+     * @var string
+     */
+    private $logo;
+    /**
+     * @var string
+     */
+    private $photo;
 
     /**
      * BillplzPayment constructor.
@@ -108,7 +116,7 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create a collection.
      *
-     * @param string   $title
+     * @param string $title
      * @param \Closure $callback
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -129,8 +137,8 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create an open collection.
      *
-     * @param string       $title
-     * @param string       $description
+     * @param string $title
+     * @param string $description
      * @param int|\Closure $amount
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -164,13 +172,55 @@ class BillplzPayment implements BillplzPaymentInterface
         if ($this->callbackUrl) {
             $message->callbackUrl($this->callbackUrl);
         }
+        if ($this->references) {
+            $reference1 = $this->references[0];
+            $reference2 = $this->references[1];
+
+
+            $message->referenceLabel1($reference1['label']);
+            $message->reference($reference1['reference']);
+            $message->referenceLabel2($reference2['label']);
+            $message->reference2($reference2['reference']);
+        }
+
+        dd($message->getBillplzMessage()->toArray());
+        return $message;
+    }
+
+
+    /**
+     * @return \Cyvelnet\LaravelBillplz\Messages\CollectionMessage
+     */
+    private function createCollectionMessage()
+    {
+        $message = new CollectionMessage(new BillplzCollectionMessage());
+
+        if ($this->logo) {
+            $message->logo($this->logo);
+        }
+
+        return $message;
+
+    }
+
+    /**
+     * @return \Cyvelnet\LaravelBillplz\Messages\OpenCollectionMessage
+     */
+    private function createOpenCollectionMessage()
+    {
+        $message = new OpenCollectionMessage(new BillplzOpenCollectionMessage());
+
+
+        if ($this->photo) {
+            $message->photo($this->photo);
+        }
 
         return $message;
     }
 
     /**
      * @param \Cyvelnet\LaravelBillplz\BillplzPaymentBill|\Closure $bill
-     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage        $message
+     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage $message
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|\Cyvelnet\LaravelBillplz\Channels\BillChannel
      */
@@ -210,18 +260,14 @@ class BillplzPayment implements BillplzPaymentInterface
     }
 
     /**
-     * @return \Cyvelnet\LaravelBillplz\Messages\CollectionMessage
+     * set default collection properties.
+     *
+     * @param $logo
+     * @param $photo
      */
-    private function createCollectionMessage()
+    public function defaultCollections($logo, $photo)
     {
-        return new CollectionMessage(new BillplzCollectionMessage());
-    }
-
-    /**
-     * @return \Cyvelnet\LaravelBillplz\Messages\OpenCollectionMessage
-     */
-    private function createOpenCollectionMessage()
-    {
-        return new OpenCollectionMessage(new BillplzOpenCollectionMessage());
+        $this->logo = $logo;
+        $this->photo = $photo;
     }
 }
