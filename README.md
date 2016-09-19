@@ -1,11 +1,11 @@
 # laravel-billplz
 
-Laravel-billplz is a simple service providers and generator to connect your laravel powered app to Billplz api v3.
-
 [![StyleCI](https://styleci.io/repos/68587947/shield?branch=master)](https://styleci.io/repos/68587947)
 [![Latest Stable Version](https://poser.pugx.org/cyvelnet/laravel-billplz/v/stable)](https://packagist.org/packages/cyvelnet/laravel-billplz)
 [![Latest Unstable Version](https://poser.pugx.org/cyvelnet/laravel-billplz/v/unstable)](https://packagist.org/packages/cyvelnet/laravel-billplz)
 [![License](https://poser.pugx.org/cyvelnet/laravel-billplz/license)](https://packagist.org/packages/cyvelnet/laravel-billplz)
+
+Laravel-billplz is a simple service providers and generator to connect your laravel powered app to Billplz api v3.
 
 
 Before you getting started, kindly visit https://www.billplz.com/enterprise/signup to register an acount and read https://www.billplz.com/api#v3 for better understanding.
