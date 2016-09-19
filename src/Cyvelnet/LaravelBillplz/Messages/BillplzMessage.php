@@ -15,7 +15,7 @@ class BillplzMessage implements Arrayable, Submitable
     /**
      * @var string
      */
-    private $collectionId;
+    private $collection_id;
 
     /**
      * @var string
@@ -40,7 +40,7 @@ class BillplzMessage implements Arrayable, Submitable
     /**
      * @var string
      */
-    private $callbackUrl;
+    private $callback_url;
 
     /**
      * @var string
@@ -57,7 +57,7 @@ class BillplzMessage implements Arrayable, Submitable
     /**
      * @var string
      */
-    private $redirectUrl;
+    private $redirect_url;
 
     /**
      * @var bool
@@ -67,37 +67,37 @@ class BillplzMessage implements Arrayable, Submitable
     /**
      * @var string
      */
-    private $referenceLabel1 = 'Reference 1';
+    private $reference_1_label = 'Reference 1';
 
     /**
      * @var string
      */
-    private $reference;
+    private $reference_1;
 
     /**
      * @var string
      */
-    private $referenceLabel2 = 'Reference 2';
+    private $reference_2_label = 'Reference 2';
 
     /**
      * @var string
      */
-    private $reference2;
+    private $reference_2;
 
     /**
      * @return string
      */
     public function getCollectionId()
     {
-        return $this->collectionId;
+        return $this->collection_id;
     }
 
     /**
-     * @param string $collectionId
+     * @param string $collection_id
      */
-    public function setCollectionId($collectionId)
+    public function setCollectionId($collection_id)
     {
-        $this->collectionId = $collectionId;
+        $this->collection_id = $collection_id;
     }
 
     /**
@@ -171,15 +171,15 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function getCallbackUrl()
     {
-        return $this->callbackUrl;
+        return $this->callback_url;
     }
 
     /**
-     * @param string $callbackUrl
+     * @param string $callback_url
      */
-    public function setCallbackUrl($callbackUrl)
+    public function setCallbackUrl($callback_url)
     {
-        $this->callbackUrl = $callbackUrl;
+        $this->callback_url = $callback_url;
     }
 
     /**
@@ -219,15 +219,15 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function getRedirectUrl()
     {
-        return $this->redirectUrl;
+        return $this->redirect_url;
     }
 
     /**
-     * @param string $redirectUrl
+     * @param string $redirect_url
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUrl($redirect_url)
     {
-        $this->redirectUrl = $redirectUrl;
+        $this->redirect_url = $redirect_url;
     }
 
     /**
@@ -251,31 +251,31 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function getReferenceLabel1()
     {
-        return $this->referenceLabel1;
+        return $this->reference_1_label;
     }
 
     /**
-     * @param string $referenceLabel1
+     * @param string $reference_1_label
      */
-    public function setReferenceLabel1($referenceLabel1)
+    public function setReferenceLabel1($reference_1_label)
     {
-        $this->referenceLabel1 = Str::limit($referenceLabel1, 120, '');
+        $this->reference_1_label = Str::limit($reference_1_label, 120, '');
     }
 
     /**
      * @return string
      */
-    public function getReference()
+    public function getReference1()
     {
-        return $this->reference;
+        return $this->reference_1;
     }
 
     /**
-     * @param string $reference
+     * @param string $reference1
      */
-    public function setReference($reference)
+    public function setReference($reference1)
     {
-        $this->reference = Str::limit($reference, 20, '');
+        $this->reference_1 = Str::limit($reference1, 20, '');
     }
 
     /**
@@ -283,15 +283,15 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function getReferenceLabel2()
     {
-        return $this->referenceLabel2;
+        return $this->reference_2_label;
     }
 
     /**
-     * @param string $referenceLabel2
+     * @param string $reference_2_label
      */
-    public function setReferenceLabel2($referenceLabel2)
+    public function setReferenceLabel2($reference_2_label)
     {
-        $this->referenceLabel2 = Str::limit($referenceLabel2, 120, '');
+        $this->reference_2_label = Str::limit($reference_2_label, 120, '');
     }
 
     /**
@@ -299,15 +299,15 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function getReference2()
     {
-        return $this->reference2;
+        return $this->reference_2;
     }
 
     /**
-     * @param string $reference2
+     * @param string $reference_2
      */
-    public function setReference2($reference2)
+    public function setReference2($reference_2)
     {
-        $this->reference2 = Str::limit($reference2, 20, '');
+        $this->reference_2 = Str::limit($reference_2, 20, '');
     }
 
     /**
