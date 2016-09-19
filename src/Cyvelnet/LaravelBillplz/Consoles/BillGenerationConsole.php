@@ -2,16 +2,14 @@
 
 namespace Cyvelnet\LaravelBillplz\Consoles;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Config\Repository as Config;
-use Illuminate\View\Factory as View;
+use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem as Filesystem;
+use Illuminate\View\Factory as View;
+use Symfony\Component\Console\Input\InputArgument;
 
 /**
- * Class BillGenerationConsole
- *
- * @package Cyvelnet\LaravelBillplz\Consoles
+ * Class BillGenerationConsole.
  */
 class BillGenerationConsole extends Command
 {
@@ -44,8 +42,8 @@ class BillGenerationConsole extends Command
     /**
      * BillGenerationConsole constructor.
      *
-     * @param \Illuminate\Config\Repository $config
-     * @param \Illuminate\View\Factory $view
+     * @param \Illuminate\Config\Repository     $config
+     * @param \Illuminate\View\Factory          $view
      * @param \Illuminate\Filesystem\Filesystem $filesystem
      */
     public function __construct(Config $config, View $view, Filesystem $filesystem)
@@ -56,15 +54,12 @@ class BillGenerationConsole extends Command
         $this->filesystem = $filesystem;
     }
 
-
     /**
      * @return bool
      */
     public function handle()
     {
-
         try {
-
             $class = ucwords($this->argument('name'));
             $directory = app_path($this->config->get('billplz.directory'));
             $namespace = $this->config->get('billplz.namespace');
@@ -86,12 +81,9 @@ class BillGenerationConsole extends Command
             $this->filesystem->put("{$directory}/{$class}.php", $view->render());
 
             $this->info("Bill {$class} created!");
-
         } catch (\Exception $e) {
             $this->error("Failed to generate bill class due to : {$e->getMessage()}");
         }
-
-
     }
 
     /**
@@ -104,9 +96,7 @@ class BillGenerationConsole extends Command
         ];
     }
 
-    /**
-     *
-     */
+
     private function askForOverwrite($class)
     {
         if ('n' === $this->ask("The class {$class} exists, overwrite ? [y/n]", 'n')) {
@@ -115,7 +105,7 @@ class BillGenerationConsole extends Command
     }
 
     /**
-     * check if a file is already exists
+     * check if a file is already exists.
      */
     private function checkFileExist($directory, $class)
     {
