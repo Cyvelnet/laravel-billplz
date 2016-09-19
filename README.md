@@ -39,7 +39,7 @@ Cyvelnet\LaravelBillplz\Facades\Billplz::class
              ->to('name', 'email', 'mobile');
     });
 ```
-An UnacceptableRequestException will be throw for any call for any missing parameter.
+An UnacceptableRequestException will be throw for any call with any missing parameter.
 
 Alternatively, you may generate reusable bill with artisan command `php artisan make:bill MonthlyManagementBill`
 
@@ -85,7 +85,7 @@ A BillNotFoundException will be throw for any missing bill.
         $collection = $request->toArray() // you can call getRawBillplzResponse(false) to get response in POPO
     }
 ```
-to customize your collection more pass in a anonymous function as the second parameter
+to customize your collection more, pass in an anonymous function as the second parameter
 
 ```php
 
@@ -93,9 +93,7 @@ to customize your collection more pass in a anonymous function as the second par
     
         // split a payment by RM50
         $collection->logo(storage_path('/billplz/my-logo.jpg'))
-                   ->splitPaymentByFixed(50)     // will convert into 5000 cents automatically
-                   ->splitEmail('foo@bar.com');  // splitPaymentByVariable() is available too
-    
+                   ->splitPaymentByFixed('foo@bar.com', 50)     // will convert into 5000 cents automatically
     });
 
 ```
