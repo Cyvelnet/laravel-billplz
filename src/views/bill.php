@@ -37,7 +37,7 @@ use \\Cyvelnet\\LaravelBillplz\\BillplzPaymentBill;
             // 'reference_label_1'  => 'Reference 1'        (Max of 120 characters), will be trim to 120 character automatically.
             // 'reference_1'        => ''                   (Max of 20 characters), will be trim to 20 character automatically.
             // 'reference_label_2'  => 'Reference 2'        (Max of 120 characters), will be trim to 120 character automatically.
-            // 'reference_2'        => 'Reference 2'        (Max of 20 characters), will be trim to 20 character automatically.
+            // 'reference_2'        => ''                   (Max of 20 characters), will be trim to 20 character automatically.
 
         ];
     }
