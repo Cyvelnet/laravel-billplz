@@ -137,6 +137,12 @@ to customize your collection more, pass in an anonymous function as the second p
     }
 ```
 
+### Sandbox
+
+Billplz api v3, enabled sandbox functionality where developers are allowed to isolates api request to a sandbox and trigger payment completion on demand.
+
+By default sandbox is disabled, to enable sandbox mode add a `BILLPLZ_ENABLE_SANDBOX = true` entry to .env and ensure you have proper configured api_key and collection_id for both production and sandbox.
+
 
 
 
