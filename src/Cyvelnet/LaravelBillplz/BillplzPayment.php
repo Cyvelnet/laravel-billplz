@@ -177,9 +177,9 @@ class BillplzPayment implements BillplzPaymentInterface
             $reference2 = $this->references[1];
 
 
-            $message->referenceLabel1($reference1['label']);
-            $message->reference($reference1['reference']);
-            $message->referenceLabel2($reference2['label']);
+            $message->reference1Label($reference1['label']);
+            $message->reference1($reference1['reference']);
+            $message->reference2Label($reference2['label']);
             $message->reference2($reference2['reference']);
         }
 

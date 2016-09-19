@@ -147,7 +147,7 @@ class BillMessage
      *
      * @return $this
      */
-    public function referenceLabel1($referenceLabel1)
+    public function reference1Label($referenceLabel1)
     {
         $this->message->setReferenceLabel1($referenceLabel1);
 
@@ -159,7 +159,7 @@ class BillMessage
      *
      * @return $this
      */
-    public function reference($reference)
+    public function reference1($reference)
     {
         $this->message->setReference($reference);
 
@@ -171,7 +171,7 @@ class BillMessage
      *
      * @return $this
      */
-    public function referenceLabel2($referenceLabel2)
+    public function reference2Label($referenceLabel2)
     {
         $this->message->setReferenceLabel2($referenceLabel2);
 

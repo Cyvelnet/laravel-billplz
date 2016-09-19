@@ -29,15 +29,15 @@ use \\Cyvelnet\\LaravelBillplz\\BillplzPaymentBill;
             |--------------------------------------------------------------------------
             */
 
-            // 'collectionId'       => '',
-            // 'callbackUrl'        => 'foo@bar.com/webhook/callback',
-            // 'dueAt'              => '2016-09-18',
-            // 'redirectUrl'        => ''
+            // 'collection_id'      => '',
+            // 'callback_url'       => 'foo@bar.com/webhook/callback',
+            // 'due_at'             => '2016-09-18',
+            // 'redirect_url'       => ''
             // 'deliver'            => false
-            // 'referenceLabel1'    => 'Reference 1'        (Max of 120 characters), will be trim to 120 character automatically.
-            // 'reference1'         => ''                   (Max of 20 characters), will be trim to 20 character automatically.
-            // 'referenceLabel2'    => 'Reference 2'        (Max of 120 characters), will be trim to 120 character automatically.
-            // 'reference2'         => 'Reference 2'        (Max of 20 characters), will be trim to 20 character automatically.
+            // 'reference_label_1'  => 'Reference 1'        (Max of 120 characters), will be trim to 120 character automatically.
+            // 'reference_1'        => ''                   (Max of 20 characters), will be trim to 20 character automatically.
+            // 'reference_label_2'  => 'Reference 2'        (Max of 120 characters), will be trim to 120 character automatically.
+            // 'reference_2'        => 'Reference 2'        (Max of 20 characters), will be trim to 20 character automatically.
 
         ];
     }
