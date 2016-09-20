@@ -66,7 +66,7 @@ class BillplzApiTransport extends BillplzApiTransportContract
      */
     public function sendGetBillRequest($billId)
     {
-        $url = $this->getRequestUrl(self::GET_BILL_URL . $billId);
+        $url = $this->getRequestUrl(self::GET_BILL_URL.$billId);
 
         return $this->sendBill('get', $url);
     }
@@ -80,7 +80,7 @@ class BillplzApiTransport extends BillplzApiTransportContract
      */
     public function sendDeleteBillRequest($billId)
     {
-        $url = $this->getRequestUrl(self::DELETE_BILL_URL . $billId);
+        $url = $this->getRequestUrl(self::DELETE_BILL_URL.$billId);
 
         return $this->sendBill('delete', $url);
     }
