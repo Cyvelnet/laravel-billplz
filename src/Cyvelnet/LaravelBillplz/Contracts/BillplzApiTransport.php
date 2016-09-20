@@ -12,6 +12,7 @@ use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
 use Cyvelnet\LaravelBillplz\Response\BillResponse;
 use Cyvelnet\LaravelBillplz\Response\CollectionResponse;
+use GuzzleHttp\ClientInterface;
 
 abstract class BillplzApiTransport
 {
