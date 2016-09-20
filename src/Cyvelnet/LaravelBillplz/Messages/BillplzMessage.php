@@ -235,15 +235,15 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function isDeliver()
     {
-        return $this->deliver;
+        return ($this->deliver === true OR $this->deliver === 'true') ;
     }
 
     /**
-     * @param bool $deliver
+     * @param bool|string $deliver
      */
     public function setDeliver($deliver)
     {
-        $this->deliver = $deliver;
+        $this->deliver = var_export($deliver, true);
     }
 
     /**

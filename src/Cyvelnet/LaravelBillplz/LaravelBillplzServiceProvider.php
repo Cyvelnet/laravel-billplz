@@ -3,6 +3,7 @@
 namespace Cyvelnet\LaravelBillplz;
 
 use Cyvelnet\LaravelBillplz\Consoles\BillGenerationConsole;
+use Cyvelnet\LaravelBillplz\Transports\BillplzApiTransport;
 use Cyvelnet\LaravelBillplz\Transports\RequestTransport;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -50,7 +51,8 @@ class LaravelBillplzServiceProvider extends \Illuminate\Support\ServiceProvider
 
             $http = $this->createHttpClient();
 
-            $billplzPayment = new BillplzPayment(new RequestTransport($http, $apiKey, $enableSandbox));
+            $billplzPayment = new BillplzPayment();
+            $billplzPayment->setTransport(new RequestTransport(new BillplzApiTransport($http, $apiKey, $enableSandbox)));
 
             $billplzPayment->defaultBills($collectionId, $callbackUrl, $references);
             $billplzPayment->defaultCollections($logo, $photo);

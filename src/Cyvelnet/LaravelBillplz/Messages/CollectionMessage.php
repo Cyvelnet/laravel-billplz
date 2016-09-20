@@ -7,16 +7,7 @@ namespace Cyvelnet\LaravelBillplz\Messages;
  */
 class CollectionMessage
 {
-    //    /**
-//     * @param $title
-//     *
-//     * @return $this
-//     */
-//    public function title($title)
-//    {
-//        $this->setTitle($title);
-//        return $this;
-//    }
+
     /**
      * @var \Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage
      */

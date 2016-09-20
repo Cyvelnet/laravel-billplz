@@ -52,16 +52,6 @@ class BillplzPayment implements BillplzPaymentInterface
     private $photo;
 
     /**
-     * BillplzPayment constructor.
-     *
-     * @param \Cyvelnet\LaravelBillplz\Contracts\TransportInterface $transport
-     */
-    public function __construct(TransportInterface $transport)
-    {
-        $this->transport = $transport;
-    }
-
-    /**
      * create a new billplz service bill.
      *
      * @param \Closure $bill
@@ -116,7 +106,7 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create a collection.
      *
-     * @param string   $title
+     * @param string $title
      * @param \Closure $callback
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -137,8 +127,8 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create an open collection.
      *
-     * @param string       $title
-     * @param string       $description
+     * @param string $title
+     * @param string $description
      * @param int|\Closure $amount
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -217,7 +207,7 @@ class BillplzPayment implements BillplzPaymentInterface
 
     /**
      * @param \Cyvelnet\LaravelBillplz\BillplzPaymentBill|\Closure $bill
-     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage        $message
+     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage $message
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|\Cyvelnet\LaravelBillplz\Channels\BillChannel
      */
@@ -266,5 +256,13 @@ class BillplzPayment implements BillplzPaymentInterface
     {
         $this->logo = $logo;
         $this->photo = $photo;
+    }
+
+    /**
+     * @param $transport
+     */
+    public function setTransport($transport)
+    {
+        $this->transport = $transport;
     }
 }

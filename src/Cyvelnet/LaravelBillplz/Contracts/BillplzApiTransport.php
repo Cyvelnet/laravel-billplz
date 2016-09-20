@@ -1,95 +1,81 @@
 <?php
 
-namespace Cyvelnet\LaravelBillplz\Transports;
 
+namespace Cyvelnet\LaravelBillplz\Contracts;
+
+
+use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
+use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
+use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
 use Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException;
 use Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException;
 use Cyvelnet\LaravelBillplz\Exceptions\EndpointNotFoundException;
 use Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException;
 use Cyvelnet\LaravelBillplz\Exceptions\UnacceptableRequestException;
-use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
-use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
-use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
 use Cyvelnet\LaravelBillplz\Response\BillResponse;
 use Cyvelnet\LaravelBillplz\Response\CollectionResponse;
-use GuzzleHttp\ClientInterface;
 
-/**
- * Class BaseTransport.
- */
-abstract class BaseTransport
+abstract class BillplzApiTransport
 {
-    /**
-     * @var \GuzzleHttp\ClientInterface
-     */
-    protected $http;
+    const PRODUCTION_HOST_NAME = 'https://www.billplz.com';
 
+    const SANDBOX_HOST_NAME = 'https://billplz-staging.herokuapp.com';
+
+    const CREATE_BILL_URL = '/api/v3/bills';
+
+    const GET_BILL_URL = '/api/v3/bills/';
+
+    const DELETE_BILL_URL = '/api/v3/bills/';
+
+    const CREATE_COLLECTION_URL = '/api/v3/collections';
+
+    const CREATE_OPEN_COLLECTION_URL = '/api/v3/open_collections';
+    
     /**
+     * send a create bill request
+     *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzMessage $message
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse
      */
-    protected function sendCreateBillRequest(BillplzMessage $message)
-    {
-        $options = $this->buildBillBody($message);
-
-        $url = $this->getRequestUrl(RequestTransport::CREATE_BILL_URL);
-
-        return $this->sendBill('post', $url, $options);
-    }
+    abstract public function sendCreateBillRequest(BillplzMessage $message);
 
     /**
+     * send a get bill request
+     *
      * @param $billId
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|mixed
      */
-    protected function sendGetBillRequest($billId)
-    {
-        $url = $this->getRequestUrl(RequestTransport::GET_BILL_URL.$billId);
-
-        return $this->sendBill('get', $url);
-    }
+    abstract public function sendGetBillRequest($billId);
 
     /**
+     * send a delete bill request
+     *
      * @param $billId
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse
      */
-    protected function sendDeleteBillRequest($billId)
-    {
-        $url = $this->getRequestUrl(RequestTransport::DELETE_BILL_URL.$billId);
-
-        $response = $this->sendBill('delete', $url);
-    }
+    abstract public function sendDeleteBillRequest($billId);
 
     /**
+     * send a create collection request
+     *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage $collection
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
      */
-    protected function sendCreateCollectionRequest(BillplzCollectionMessage $collection)
-    {
-        $options = $this->buildCollectionBody($collection);
-
-        $url = $this->getRequestUrl(RequestTransport::CREATE_COLLECTION_URL);
-
-        return $this->sendCollection('post', $url, $options);
-    }
+    abstract public function sendCreateCollectionRequest(BillplzCollectionMessage $collection);
 
     /**
+     * send a create open collection request
+     *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage $collection
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
      */
-    protected function sendCreateOpenCollectionRequest(BillplzOpenCollectionMessage $collection)
-    {
-        $options = $this->buildCollectionBody($collection);
+    abstract public function sendCreateOpenCollectionRequest(BillplzOpenCollectionMessage $collection);
 
-
-        $url = $this->getRequestUrl(RequestTransport::CREATE_OPEN_COLLECTION_URL);
-
-        return $this->sendCollection('post', $url, $options);
-    }
 
     /**
      * send a bill related request to billplz gateway.
@@ -103,7 +89,6 @@ abstract class BaseTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException
-     *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse
      */
     protected function sendBill($type, $url, $options = [])
@@ -125,7 +110,6 @@ abstract class BaseTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException
-     *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
      */
     protected function sendCollection($type, $url, $options)
@@ -147,7 +131,6 @@ abstract class BaseTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\EndpointNotFoundException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\UnacceptableRequestException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
-     *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse
      */
     protected function sendBillplzServiceRequest($type, $url, $options = [])
@@ -163,7 +146,7 @@ abstract class BaseTransport
      *
      * @return array
      */
-    protected function getAuthOption()
+    public function getAuthOption()
     {
         return ['auth' => [$this->apiKey, null]];
     }
@@ -222,9 +205,9 @@ abstract class BaseTransport
      *
      * @return string
      */
-    protected function getRequestUrl($url)
+    public function getRequestUrl($url)
     {
-        $hostName = $this->sandboxMode ? RequestTransport::SANDBOX_HOST_NAME : RequestTransport::PRODUCTION_HOST_NAME;
+        $hostName = $this->sandboxMode ? self::SANDBOX_HOST_NAME : self::PRODUCTION_HOST_NAME;
 
         return "{$hostName}{$url}";
     }
@@ -238,7 +221,7 @@ abstract class BaseTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\EndpointNotFoundException
      */
-    private function determineNotFoundException($response, $url)
+    protected function determineNotFoundException($response, $url)
     {
         if (array_key_exists('type', $response)) {
             throw new BillNotFoundException();
@@ -254,7 +237,7 @@ abstract class BaseTransport
      *
      * @return string
      */
-    private function getGuzzleRequestBodyKey($files = false)
+    protected function getGuzzleRequestBodyKey($files = false)
     {
         if (version_compare(ClientInterface::VERSION, '6') === 1) {
             if ($files) {
@@ -274,7 +257,7 @@ abstract class BaseTransport
      *
      * @return array
      */
-    private function formMultiparts($options = [])
+    protected function formMultiparts($options = [])
     {
         $multipartOptions = [];
         foreach ($options as $key => $option) {
@@ -306,10 +289,9 @@ abstract class BaseTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\UnacceptableRequestException
-     *
      * @return mixed
      */
-    private function handleResponses($response, $url = null)
+    protected function handleResponses($response, $url = null)
     {
         switch ($response->getHttpCode()) {
 

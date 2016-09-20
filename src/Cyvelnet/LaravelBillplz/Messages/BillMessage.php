@@ -54,6 +54,7 @@ class BillMessage
     public function mobile($mobile)
     {
         $this->message->setMobile($mobile);
+        $this->message->setDeliver(true);
 
         return $this;
     }

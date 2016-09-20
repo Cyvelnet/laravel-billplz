@@ -1,6 +1,7 @@
 # laravel-billplz
 
 [![StyleCI](https://styleci.io/repos/68587947/shield?branch=master)](https://styleci.io/repos/68587947)
+[![Build Status](https://travis-ci.org/Cyvelnet/laravel-billplz.svg?branch=master)](https://travis-ci.org/Cyvelnet/laravel-billplz)
 [![Latest Stable Version](https://poser.pugx.org/cyvelnet/laravel-billplz/v/stable)](https://packagist.org/packages/cyvelnet/laravel-billplz)
 [![Latest Unstable Version](https://poser.pugx.org/cyvelnet/laravel-billplz/v/unstable)](https://packagist.org/packages/cyvelnet/laravel-billplz)
 [![License](https://poser.pugx.org/cyvelnet/laravel-billplz/license)](https://packagist.org/packages/cyvelnet/laravel-billplz)

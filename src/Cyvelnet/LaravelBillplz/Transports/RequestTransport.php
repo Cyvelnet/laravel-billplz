@@ -2,6 +2,7 @@
 
 namespace Cyvelnet\LaravelBillplz\Transports;
 
+use Cyvelnet\LaravelBillplz\Contracts\BillplzApiTransport as BillplzApiTransportContract;
 use Cyvelnet\LaravelBillplz\Contracts\TransportInterface;
 use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
@@ -11,43 +12,22 @@ use GuzzleHttp\ClientInterface;
 /**
  * Class RequestTransport.
  */
-class RequestTransport extends BaseTransport implements TransportInterface
+class RequestTransport implements TransportInterface
 {
     /**
-     * @var
+     * @var \Cyvelnet\LaravelBillplz\Contracts\BillplzApiTransport
      */
-    protected $apiKey;
-    /**
-     * @var bool
-     */
-    protected $sandboxMode;
+    private $transport;
 
-    const PRODUCTION_HOST_NAME = 'https://www.billplz.com';
-
-    const SANDBOX_HOST_NAME = 'https://billplz-staging.herokuapp.com';
-
-    const CREATE_BILL_URL = '/api/v3/bills';
-
-    const GET_BILL_URL = '/api/v3/bills/';
-
-    const DELETE_BILL_URL = '/api/v3/bills/';
-
-    const CREATE_COLLECTION_URL = '/api/v3/collections';
-
-    const CREATE_OPEN_COLLECTION_URL = '/api/v3/open_collections';
 
     /**
      * RequestTransport constructor.
      *
-     * @param \GuzzleHttp\ClientInterface $http
-     * @param $apiKey
-     * @param bool $sandboxMode
+     * @param \Cyvelnet\LaravelBillplz\Contracts\BillplzApiTransport $transport
      */
-    public function __construct(ClientInterface $http, $apiKey, $sandboxMode = false)
+    public function __construct(BillplzApiTransportContract $transport)
     {
-        $this->http = $http;
-        $this->apiKey = $apiKey;
-        $this->sandboxMode = $sandboxMode;
+        $this->transport = $transport;
     }
 
     /**
@@ -57,7 +37,7 @@ class RequestTransport extends BaseTransport implements TransportInterface
      */
     public function createBill(BillplzMessage $bill)
     {
-        return $this->sendCreateBillRequest($bill);
+        return $this->transport->sendCreateBillRequest($bill);
     }
 
     /**
@@ -69,7 +49,7 @@ class RequestTransport extends BaseTransport implements TransportInterface
      */
     public function getBill($billId)
     {
-        return $this->sendGetBillRequest($billId);
+        return $this->transport->sendGetBillRequest($billId);
     }
 
     /**
@@ -81,7 +61,7 @@ class RequestTransport extends BaseTransport implements TransportInterface
      */
     public function deleteBill($billId)
     {
-        return $this->sendDeleteBillRequest($billId);
+        return $this->transport->sendDeleteBillRequest($billId);
     }
 
     /**
@@ -91,7 +71,7 @@ class RequestTransport extends BaseTransport implements TransportInterface
      */
     public function createCollection(BillplzCollectionMessage $collection)
     {
-        return $this->sendCreateCollectionRequest($collection);
+        return $this->transport->sendCreateCollectionRequest($collection);
     }
 
     /**
@@ -101,6 +81,6 @@ class RequestTransport extends BaseTransport implements TransportInterface
      */
     public function createOpenCollection(BillplzOpenCollectionMessage $collection)
     {
-        return $this->sendCreateOpenCollectionRequest($collection);
+        return $this->transport->sendCreateOpenCollectionRequest($collection);
     }
 }
