@@ -1,17 +1,15 @@
 <?php
 
-
 namespace Cyvelnet\LaravelBillplz\Contracts;
 
-
-use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
-use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
-use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
 use Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException;
 use Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException;
 use Cyvelnet\LaravelBillplz\Exceptions\EndpointNotFoundException;
 use Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException;
 use Cyvelnet\LaravelBillplz\Exceptions\UnacceptableRequestException;
+use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
+use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
+use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
 use Cyvelnet\LaravelBillplz\Response\BillResponse;
 use Cyvelnet\LaravelBillplz\Response\CollectionResponse;
 
@@ -30,9 +28,9 @@ abstract class BillplzApiTransport
     const CREATE_COLLECTION_URL = '/api/v3/collections';
 
     const CREATE_OPEN_COLLECTION_URL = '/api/v3/open_collections';
-    
+
     /**
-     * send a create bill request
+     * send a create bill request.
      *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzMessage $message
      *
@@ -41,7 +39,7 @@ abstract class BillplzApiTransport
     abstract public function sendCreateBillRequest(BillplzMessage $message);
 
     /**
-     * send a get bill request
+     * send a get bill request.
      *
      * @param $billId
      *
@@ -50,7 +48,7 @@ abstract class BillplzApiTransport
     abstract public function sendGetBillRequest($billId);
 
     /**
-     * send a delete bill request
+     * send a delete bill request.
      *
      * @param $billId
      *
@@ -59,7 +57,7 @@ abstract class BillplzApiTransport
     abstract public function sendDeleteBillRequest($billId);
 
     /**
-     * send a create collection request
+     * send a create collection request.
      *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage $collection
      *
@@ -68,14 +66,13 @@ abstract class BillplzApiTransport
     abstract public function sendCreateCollectionRequest(BillplzCollectionMessage $collection);
 
     /**
-     * send a create open collection request
+     * send a create open collection request.
      *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage $collection
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
      */
     abstract public function sendCreateOpenCollectionRequest(BillplzOpenCollectionMessage $collection);
-
 
     /**
      * send a bill related request to billplz gateway.
@@ -89,6 +86,7 @@ abstract class BillplzApiTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException
+     *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse
      */
     protected function sendBill($type, $url, $options = [])
@@ -110,6 +108,7 @@ abstract class BillplzApiTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillNotFoundException
+     *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
      */
     protected function sendCollection($type, $url, $options)
@@ -131,6 +130,7 @@ abstract class BillplzApiTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\EndpointNotFoundException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\UnacceptableRequestException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
+     *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse
      */
     protected function sendBillplzServiceRequest($type, $url, $options = [])
@@ -289,6 +289,7 @@ abstract class BillplzApiTransport
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\BillplzUnauthorizedException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\TemporarilyServiceUnavailableException
      * @throws \Cyvelnet\LaravelBillplz\Exceptions\UnacceptableRequestException
+     *
      * @return mixed
      */
     protected function handleResponses($response, $url = null)

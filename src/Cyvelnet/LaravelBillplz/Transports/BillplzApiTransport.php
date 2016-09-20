@@ -3,12 +3,9 @@
 namespace Cyvelnet\LaravelBillplz\Transports;
 
 use Cyvelnet\LaravelBillplz\Contracts\BillplzApiTransport as BillplzApiTransportContract;
-
 use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
-use Cyvelnet\LaravelBillplz\Response\BillResponse;
-use Cyvelnet\LaravelBillplz\Response\CollectionResponse;
 use GuzzleHttp\ClientInterface;
 
 /**
@@ -44,9 +41,8 @@ class BillplzApiTransport extends BillplzApiTransportContract
         $this->sandboxMode = $sandboxMode;
     }
 
-
     /**
-     * send a create bill request
+     * send a create bill request.
      *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzMessage $message
      *
@@ -62,7 +58,7 @@ class BillplzApiTransport extends BillplzApiTransportContract
     }
 
     /**
-     * send a get bill request
+     * send a get bill request.
      *
      * @param $billId
      *
@@ -70,13 +66,13 @@ class BillplzApiTransport extends BillplzApiTransportContract
      */
     public function sendGetBillRequest($billId)
     {
-        $url = $this->getRequestUrl(self::GET_BILL_URL . $billId);
+        $url = $this->getRequestUrl(self::GET_BILL_URL.$billId);
 
         return $this->sendBill('get', $url);
     }
 
     /**
-     * send a delete bill request
+     * send a delete bill request.
      *
      * @param $billId
      *
@@ -84,13 +80,13 @@ class BillplzApiTransport extends BillplzApiTransportContract
      */
     public function sendDeleteBillRequest($billId)
     {
-        $url = $this->getRequestUrl(self::DELETE_BILL_URL . $billId);
+        $url = $this->getRequestUrl(self::DELETE_BILL_URL.$billId);
 
         $response = $this->sendBill('delete', $url);
     }
 
     /**
-     * send a create collection request
+     * send a create collection request.
      *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage $collection
      *
@@ -106,7 +102,7 @@ class BillplzApiTransport extends BillplzApiTransportContract
     }
 
     /**
-     * send a create open collection request
+     * send a create open collection request.
      *
      * @param \Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage $collection
      *
@@ -120,5 +116,4 @@ class BillplzApiTransport extends BillplzApiTransportContract
 
         return $this->sendCollection('post', $url, $options);
     }
-
 }

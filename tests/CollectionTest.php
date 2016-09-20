@@ -1,11 +1,10 @@
 <?php
 
 /**
- * Class CollectionTest
+ * Class CollectionTest.
  */
 class CollectionTest extends Orchestra\Testbench\TestCase
 {
-
     /**
      * @test
      */
@@ -156,15 +155,12 @@ class CollectionTest extends Orchestra\Testbench\TestCase
         ], $message->getBillplzCollectionMessage()->toArray());
     }
 
-
     /**
      * @return \Cyvelnet\LaravelBillplz\Messages\CollectionMessage
      */
     private function getCollectionMessage()
     {
-
         return new \Cyvelnet\LaravelBillplz\Messages\CollectionMessage(new \Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage());
-
     }
 
     /**
@@ -172,8 +168,6 @@ class CollectionTest extends Orchestra\Testbench\TestCase
      */
     private function getOpenCollectionMessage()
     {
-
         return new \Cyvelnet\LaravelBillplz\Messages\OpenCollectionMessage(new \Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage());
-
     }
 }

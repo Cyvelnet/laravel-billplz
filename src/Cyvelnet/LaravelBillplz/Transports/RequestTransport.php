@@ -7,7 +7,6 @@ use Cyvelnet\LaravelBillplz\Contracts\TransportInterface;
 use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzOpenCollectionMessage;
-use GuzzleHttp\ClientInterface;
 
 /**
  * Class RequestTransport.
@@ -18,7 +17,6 @@ class RequestTransport implements TransportInterface
      * @var \Cyvelnet\LaravelBillplz\Contracts\BillplzApiTransport
      */
     private $transport;
-
 
     /**
      * RequestTransport constructor.
