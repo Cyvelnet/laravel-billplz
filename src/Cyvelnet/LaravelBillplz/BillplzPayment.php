@@ -5,7 +5,6 @@ namespace Cyvelnet\LaravelBillplz;
 use Closure;
 use Cyvelnet\LaravelBillplz\Channels\BillChannel;
 use Cyvelnet\LaravelBillplz\Contracts\BillplzPaymentInterface;
-use Cyvelnet\LaravelBillplz\Contracts\TransportInterface;
 use Cyvelnet\LaravelBillplz\Messages\BillMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage;
 use Cyvelnet\LaravelBillplz\Messages\BillplzMessage;
@@ -106,7 +105,7 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create a collection.
      *
-     * @param string $title
+     * @param string   $title
      * @param \Closure $callback
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -127,8 +126,8 @@ class BillplzPayment implements BillplzPaymentInterface
     /**
      * create an open collection.
      *
-     * @param string $title
-     * @param string $description
+     * @param string       $title
+     * @param string       $description
      * @param int|\Closure $amount
      *
      * @return \Cyvelnet\LaravelBillplz\Response\CollectionResponse
@@ -207,7 +206,7 @@ class BillplzPayment implements BillplzPaymentInterface
 
     /**
      * @param \Cyvelnet\LaravelBillplz\BillplzPaymentBill|\Closure $bill
-     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage $message
+     * @param \Cyvelnet\LaravelBillplz\Messages\BillMessage        $message
      *
      * @return \Cyvelnet\LaravelBillplz\Response\BillResponse|\Cyvelnet\LaravelBillplz\Channels\BillChannel
      */

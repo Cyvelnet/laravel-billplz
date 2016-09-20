@@ -235,7 +235,7 @@ class BillplzMessage implements Arrayable, Submitable
      */
     public function isDeliver()
     {
-        return ($this->deliver === true OR $this->deliver === 'true') ;
+        return $this->deliver === true or $this->deliver === 'true';
     }
 
     /**

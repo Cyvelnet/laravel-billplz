@@ -7,7 +7,6 @@ namespace Cyvelnet\LaravelBillplz\Messages;
  */
 class CollectionMessage
 {
-
     /**
      * @var \Cyvelnet\LaravelBillplz\Messages\BillplzCollectionMessage
      */

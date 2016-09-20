@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class BillTest
+ * Class BillTest.
  */
 class BillTest extends Orchestra\Testbench\TestCase
 {
@@ -44,7 +44,6 @@ class BillTest extends Orchestra\Testbench\TestCase
         $this->assertEquals('60123456789', $message->getBillplzMessage()->getMobile());
         $this->assertEquals(true, $message->getBillplzMessage()->isDeliver());
     }
-
 
     /**
      * @test
@@ -89,8 +88,6 @@ class BillTest extends Orchestra\Testbench\TestCase
      */
     private function getBillMessage()
     {
-
-        return new \Cyvelnet\LaravelBillplz\Messages\BillMessage(new \Cyvelnet\LaravelBillplz\Messages\BillplzMessage);
-
+        return new \Cyvelnet\LaravelBillplz\Messages\BillMessage(new \Cyvelnet\LaravelBillplz\Messages\BillplzMessage());
     }
 }
