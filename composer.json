@@ -22,5 +22,15 @@
             "Cyvelnet\\LaravelBillplz\\": "src/"
         }
     },
+    "extra":{
+        "laravel":{
+            "providers":[
+                "Cyvelnet\\LaravelBillplz\\LaravelBillplzServiceProvider"
+            ],
+            "aliases":{
+                "Billplz":"Cyvelnet\\LaravelBillplz\\Facades\\Billplz"
+            }
+        }
+    },
     "minimum-stability": "stable"
 }
